@@ -6,7 +6,6 @@ This repo is used to build linux images (as snapshots) for use with
 
 Templates for the following distros are currently provided:
 
-  - archlinux
   - nixos
 
 I recommend the use of Hetzner's
@@ -28,7 +27,6 @@ Please ensure that you have done the following:
 
 To build VM images:
 
-  - `$ packer build templates/archlinux.pkr.hcl`
   - `$ packer build templates/nixos.pkr.hcl`
 
 To view info about past builds:
@@ -37,7 +35,7 @@ To view info about past builds:
 
 To debug a build:
 
-  - `$ packer build -debug -on-error=ask packer/nixos.pkr.hcl`
+  - `$ packer build -debug -on-error=ask templates/nixos.pkr.hcl`
   - `$ ssh -F/dev/null -i ssh_key_hcloud.pem root@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no`
 
 ### Internals
@@ -85,18 +83,6 @@ happen to treat as an execute-on-boot script, is instead handled by
 `hcloud-dl-userdata.service`, which only transcribes it into
 `/etc/hcloud-userdata` and nothing else.
 
-#### Archlinux
-
-Archlinux images use the file `/etc/hcloud-metadata.json` to drive a
-few systemd services, which in turn implement the dynamic features
-mentioned above:
-
-  - hcloud-hostname.service (sets hostname)
-  - hcloud-network.service (configures primary and attached networks)
-  - hcloud-ssh-keys.service (sets ssh root keys)
-  
-Any further configuration is up to your provisioning tool.
-
 #### NixOS
 
 NixOS images export the metadata from `/etc/hcloud-metadata.json` as
@@ -127,24 +113,11 @@ images (for rapid deployment / autoscaling).
 It is planned to transition some or all of the above NixOS workflow
 to use flakes instead, but this isn't implemented yet.
 
-### Known Issues
-
-- The upstream archlinux bootstrap image's filename is derived from
-  its release day. I know of no good way to automatically get this
-  date. Set `-var arch-image=archlinux-bootstrap-20XX.XX.XX-x86_64.tar.gz`
-  if your builds are failing because of this issue.
-
-- Verifying the archlinux bootstrap image is relatively complex due to
-  the trust setup the archlinux team uses. We don't properly derive
-  developer key trust from the master key(s), but instead pin the key of
-  the developer that usually signs the releases.
-
 ## GPG Keys
 
 The upstream for the GPG keys used by the installation scripts can be
 found on these pages:
 
-  - Archlinux: https://www.archlinux.org/master-keys/
   - Nixos: https://nixos.org/nix/download.html
 
 ## License
