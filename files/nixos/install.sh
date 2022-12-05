@@ -44,7 +44,7 @@ nix-env -iE "_: with import <nixpkgs/nixos> { configuration = {}; }; with config
 
 # XXX: template the nix config previously injected by packer
 for i in NIX_CHANNEL KEYMAP LOCALE TIMEZONE ROOT_SSH_KEY; do
-  sed -i "s|{{ $i }}|${!i}|"  /mnt/etc/nixos/hcloud/default.nix
+  sed -i "s|{{ $i }}|${!i}|"  /mnt/etc/nixos/configuration.nix
 done
 nixos-generate-config --root /mnt
 
