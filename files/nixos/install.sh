@@ -55,4 +55,15 @@ nixos-install --no-root-passwd
 umount /nix
 
 # remove the installer tmp from target disk
+echo "Removing installer traces"
 rm -rf /mnt/installer
+
+# echo "Running first rebuild switch"
+# chroot_bash=$(find /mnt/nix -wholename "*-bash-*/bin/bash" | tail -n 1 | sed -e 's/\/mnt//')
+# chroot_nix_channel=$(find /mnt/nix -wholename "*-nix-*/bin/nix-channel" | tail -n 1 | sed -e 's/\/mnt//')
+# chroot_nixos_rebuild=$(find /mnt/nix -wholename "*-nixos-*/bin/nixos-rebuild" | tail -n 1 | sed -e 's/\/mnt//')
+# mount -t proc /proc /mnt/proc/
+# mount --rbind /sys /mnt/sys/
+# mount --rbind /dev /mnt/dev/
+# mkdir /mnt/tmp
+# chroot /mnt ${chroot_bash} -c "${chroot_nix_channel} --update && ${chroot_nixos_rebuild} switch"
