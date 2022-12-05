@@ -16,7 +16,7 @@ variable "hcloud-token" {
 
 variable "nix-channel" {
   type    = string
-  default = "21.11"
+  default = "22.11"
 }
 
 variable "nix-config-path" {
@@ -26,7 +26,7 @@ variable "nix-config-path" {
 
 variable "nix-release" {
   type    = string
-  default = "2.5.1"
+  default = "2.11.0"
 }
 
 variable "root-ssh-key" {
