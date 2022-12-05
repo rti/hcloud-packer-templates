@@ -37,14 +37,14 @@
     "{{ ROOT_SSH_KEY }}"
   ];
 
-  networking.dhcpcd.enable = lib.mkDefault false;
-  systemd.network = {
-    enable = lib.mkDefault true;
-    networks.default = lib.mkDefault {
-      matchConfig.Match = "en*";
-      networkConfig.DHCP = "yes";
-    };
-  };
   /* services.resolved.enable = lib.mkDefault true; */
 
+  networking.dhcpcd.enable = lib.mkDefault true;
+  /* systemd.network = { */
+  /*   enable = lib.mkDefault true; */
+  /*   networks.default = lib.mkDefault { */
+  /*     matchConfig.Match = "en*"; */
+  /*     networkConfig.DHCP = "yes"; */
+  /*   }; */
+  /* }; */
 }
