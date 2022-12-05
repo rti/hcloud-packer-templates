@@ -9,7 +9,7 @@
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
   environment.systemPackages = with pkgs; [
-    {{ EXTRA_PACKAGES }}
+    neovim
   ];
 
   i18n.defaultLocale = lib.mkDefault "{{ LOCALE }}";

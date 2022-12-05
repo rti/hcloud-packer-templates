@@ -1,8 +1,3 @@
-variable "extra-packages" {
-  type    = list(string)
-  default = []
-}
-
 variable "hcloud-servertype" {
   type    = string
   default = "cx11"
@@ -108,7 +103,6 @@ build {
       "KEYMAP=${var.system-keymap}",
       "LOCALE=${var.system-locale}",
       "TIMEZONE=${var.system-timezone}",
-      "EXTRA_PACKAGES=${join(" ", var.extra-packages)}",
     ]
   }
 
