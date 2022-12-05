@@ -17,7 +17,14 @@ readonly NIX_CHANNEL_URL="https://channels.nixos.org/nixos-${NIX_CHANNEL}"
 # XXX: get nix install working in rescue system
 groupadd --force --system nixbld
 useradd --system --gid nixbld --groups nixbld nixbld
-mkdir -m 0755 /nix && chown root /nix
+
+# create a temporary installer dir on the target disk
+mkdir -p -m 0755 /mnt/installer/nix
+chown root /mnt/installer/nix
+mkdir -m 0755 /nix
+
+# link the installer dir to /nix
+mount -o bind /mnt/installer/nix /nix
 
 # obtain nix tools
 curl --fail -o install     "${NIX_INSTALL_URL}"
@@ -43,3 +50,9 @@ nixos-generate-config --root /mnt
 
 # actual install
 nixos-install --no-root-passwd
+
+# unlink the installer from /nix
+umount /nix
+
+# remove the installer tmp from target disk
+rm -rf /mnt/installer
