@@ -23,8 +23,10 @@
   };
 
   system.autoUpgrade.enable = lib.mkDefault true;
+
   nix = {
-    autoOptimiseStore = lib.mkDefault true;
+    settings.auto-optimise-store = lib.mkDefault true;
+
     gc = {
       automatic = lib.mkDefault true;
       dates = lib.mkDefault "daily";
