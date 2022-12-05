@@ -50,7 +50,6 @@ variable "system-timezone" {
 }
 
 locals {
-  arch-release = "${ legacy_isotime("2006-01") }-01"
   build-id = "${ uuidv4() }"
   build-labels  = {
     os-flavor              = "nixos"
@@ -64,7 +63,7 @@ locals {
 
 source "hcloud" "nixos" {
   server_type = "${ var.hcloud-servertype }"
-  image = "debian-11"
+  image       = "debian-11"
   rescue      = "linux64"
   location    = "hel1"
   snapshot_name = "nixos-{{ timestamp }}"
