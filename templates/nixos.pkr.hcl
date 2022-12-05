@@ -65,7 +65,7 @@ source "hcloud" "nixos" {
   server_type = "${ var.hcloud-servertype }"
   image       = "debian-11"
   rescue      = "linux64"
-  location    = "hel1"
+  location    = "fsn1"
   snapshot_name = "nixos-{{ timestamp }}"
   snapshot_labels = local.build-labels
   ssh_username  = "root"
