@@ -31,7 +31,8 @@ variable "nix-release" {
 
 variable "root-ssh-key" {
   type    = string
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCo31gjjKXTeVYH6Oy7xGqT7rfsBkhLOFDsDEwkfNvVP8jzobumSPfIlBVKLAYU3A+5lPlICLVfnkGSIkLO+fLb3c54HQ8GHb2R/+cq5N/JicMu7LAmYy7ADF7cwl8UklLYm9i2UrZtsD+Xi/2KeGWqpbscs6HNqOoQjoOrQHOqpJW0kaAr+IgMEL+ECh1/loS4J3cVTk9Xi+jZbNDRR8BtqZ9WEpYSftqGLNHeRTYq35kw0FkV5CKhDoKBDLyTHU/sSyic7NpIWd7MI0CzMYmb5bSAdW19KdgNbz4Y+yvZsD9LZ6rvy4MbwWXAL0f/kSKMxh7Zw57sYmgf0Q8O6LIc5cR/kzs63FChWyoIHEhbtzC0kSNatCrN6UYG/cHehUvdpQVzf5zuvlErw0C4NxYth8l5QrcwoOKQNeiRYOivyUaiKEtcVmv9KD91IPhzwCv3v6DVhfc61gmjRL/G4Ipzv61M9zGJXLfOytxQ6uZVkfIQ9em+/YqVyWV/TezprYhLVwHPZ5c9/qLvnPRidrCAJxGUdtB3LHM2swsAmx1cS8m5jxggWIBmwZB5uxCliF2XHXu0+rUmmi0sTX4EcL5HlXuzMBW3vtKVTy4kGHqvNjIQx7GGcs4Bfp3qfR893a1xrZQoOAeuLvwGDa1otAQLPsZw4nuA8XFpg0GP35bvGQ== openpgp:0xB487F34B"
+  /* default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCo31gjjKXTeVYH6Oy7xGqT7rfsBkhLOFDsDEwkfNvVP8jzobumSPfIlBVKLAYU3A+5lPlICLVfnkGSIkLO+fLb3c54HQ8GHb2R/+cq5N/JicMu7LAmYy7ADF7cwl8UklLYm9i2UrZtsD+Xi/2KeGWqpbscs6HNqOoQjoOrQHOqpJW0kaAr+IgMEL+ECh1/loS4J3cVTk9Xi+jZbNDRR8BtqZ9WEpYSftqGLNHeRTYq35kw0FkV5CKhDoKBDLyTHU/sSyic7NpIWd7MI0CzMYmb5bSAdW19KdgNbz4Y+yvZsD9LZ6rvy4MbwWXAL0f/kSKMxh7Zw57sYmgf0Q8O6LIc5cR/kzs63FChWyoIHEhbtzC0kSNatCrN6UYG/cHehUvdpQVzf5zuvlErw0C4NxYth8l5QrcwoOKQNeiRYOivyUaiKEtcVmv9KD91IPhzwCv3v6DVhfc61gmjRL/G4Ipzv61M9zGJXLfOytxQ6uZVkfIQ9em+/YqVyWV/TezprYhLVwHPZ5c9/qLvnPRidrCAJxGUdtB3LHM2swsAmx1cS8m5jxggWIBmwZB5uxCliF2XHXu0+rUmmi0sTX4EcL5HlXuzMBW3vtKVTy4kGHqvNjIQx7GGcs4Bfp3qfR893a1xrZQoOAeuLvwGDa1otAQLPsZw4nuA8XFpg0GP35bvGQ== openpgp:0xB487F34B" */
+  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ3eAZ+eqS9DupgFd+U/YZ4M4hv0Ft6YC1WhHMU8QuLm rti@r23"
 }
 
 variable "system-keymap" {
@@ -66,6 +67,7 @@ source "hcloud" "nixos" {
   image       = "debian-11"
   rescue      = "linux64"
   location    = "fsn1"
+  /* location    = "hel1" */
   snapshot_name = "nixos-{{ timestamp }}"
   snapshot_labels = local.build-labels
   ssh_username  = "root"
