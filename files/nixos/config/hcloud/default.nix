@@ -3,7 +3,6 @@
   imports = [
     <nixpkgs/nixos/modules/profiles/headless.nix>
     ./hcloud-metadata.nix
-    ./user/configuration.nix
   ];
 
   system.stateVersion = "{{ NIX_CHANNEL }}";

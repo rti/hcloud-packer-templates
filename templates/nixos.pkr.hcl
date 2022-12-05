@@ -25,11 +25,6 @@ variable "nix-channel" {
   default = "22.11"
 }
 
-variable "nix-config-path" {
-  type    = string
-  default = "files/nixos/config/hcloud/user/"
-}
-
 variable "nix-release" {
   type    = string
   default = "2.11.0"
@@ -102,11 +97,6 @@ build {
   provisioner "file" {
     destination = "/mnt/etc/nixos/"
     source      = "files/nixos/config/"
-  }
-
-  provisioner "file" {
-    destination = "/mnt/etc/nixos/hcloud/user/"
-    source      = "${var.nix-config-path}"
   }
 
   provisioner "shell" {
