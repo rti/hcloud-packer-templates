@@ -33,19 +33,12 @@
     };
   };
 
+  networking.dhcpcd.enable = lib.mkDefault true;
+
+  services.resolved.enable = lib.mkDefault true;
+
   services.openssh.enable = lib.mkDefault true;
   users.users.root.openssh.authorizedKeys.keys = lib.mkDefault [
     "{{ ROOT_SSH_KEY }}"
   ];
-
-  /* services.resolved.enable = lib.mkDefault true; */
-
-  networking.dhcpcd.enable = lib.mkDefault true;
-  /* systemd.network = { */
-  /*   enable = lib.mkDefault true; */
-  /*   networks.default = lib.mkDefault { */
-  /*     matchConfig.Match = "en*"; */
-  /*     networkConfig.DHCP = "yes"; */
-  /*   }; */
-  /* }; */
 }
