@@ -8,6 +8,12 @@ variable "hcloud-servertype" {
   default = "cx11"
 }
 
+variable "hcloud-location" {
+  type    = string
+  default = "fsn1"
+  /* default = "hel1" */
+}
+
 variable "hcloud-token" {
   type      = string
   default   = "${env("HCLOUD_TOKEN")}"
@@ -66,8 +72,7 @@ source "hcloud" "nixos" {
   server_type = "${ var.hcloud-servertype }"
   image       = "debian-11"
   rescue      = "linux64"
-  location    = "fsn1"
-  /* location    = "hel1" */
+  location = "${ var.hcloud-location }"
   snapshot_name = "nixos-{{ timestamp }}"
   snapshot_labels = local.build-labels
   ssh_username  = "root"
