@@ -16,12 +16,12 @@ set 1 boot on
 EOF
 
 mkfs.fat /dev/sda1
-fatlabel /dev/sda1 boot
+fatlabel /dev/sda1 BOOT
 
-mkswap --label swap /dev/sda2
+mkswap --label SWAP /dev/sda2
 swapon /dev/sda2
 
-mke2fs -t ext4 -L root /dev/sda3
+mke2fs -t ext4 -L ROOT /dev/sda3
 mount /dev/sda3 /mnt
 
 mkdir /mnt/boot
