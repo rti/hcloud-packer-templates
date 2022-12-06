@@ -78,8 +78,8 @@ build {
   }
 
   provisioner "file" {
-    destination = "/tmp/key-${local.build-id}.gpg"
     source      = "files/nixos/key.gpg"
+    destination = "/tmp/key-${local.build-id}.gpg"
   }
 
   provisioner "shell" {
@@ -90,8 +90,8 @@ build {
   }
 
   provisioner "file" {
-    destination = "/mnt/etc/nixos/"
     source      = "files/nixos/config/"
+    destination = "/mnt/etc/nixos/"
   }
 
   provisioner "shell" {
