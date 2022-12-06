@@ -15,6 +15,12 @@ variable "hcloud-token" {
   sensitive = true
 }
 
+variable "luks-password" {
+  type      = string
+  default   = "${env("LUKS_PASSWORD")}"
+  sensitive = true
+}
+
 variable "nix-channel" {
   type    = string
   default = "22.11"
@@ -74,7 +80,9 @@ build {
 
   provisioner "shell" {
     script           = "files/filesystem.sh"
-    environment_vars = [ "LABEL=${local.build-id}" ]
+    environment_vars = [ 
+      "LUKS_PASSWORD=${var.luks-password}" 
+    ]
   }
 
   provisioner "file" {
