@@ -13,9 +13,9 @@
     neovim
   ];
 
-  i18n.defaultLocale = lib.mkDefault "{{ LOCALE }}";
-  console.keyMap = lib.mkDefault "{{ KEYMAP }}";
-  time.timeZone = lib.mkDefault "{{ TIMEZONE }}";
+  console.keyMap = "us";
+  time.timeZone = "UTC";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   boot = {
     tmpOnTmpfs = lib.mkDefault true;
@@ -29,21 +29,7 @@
     };
   };
 
-  system.autoUpgrade.enable = lib.mkDefault true;
-
-  nix = {
-    settings.auto-optimise-store = lib.mkDefault true;
-
-    gc = {
-      automatic = lib.mkDefault true;
-      dates = lib.mkDefault "daily";
-      options = lib.mkDefault "--delete-older-than 7d";
-    };
-  };
-
   networking.dhcpcd.enable = lib.mkDefault true;
-
-  services.resolved.enable = lib.mkDefault true;
 
   services.openssh.enable = lib.mkDefault true;
   users.users.root.openssh.authorizedKeys.keys = lib.mkDefault [

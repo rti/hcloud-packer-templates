@@ -37,21 +37,6 @@ variable "root-ssh-key" {
   default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ3eAZ+eqS9DupgFd+U/YZ4M4hv0Ft6YC1WhHMU8QuLm rti@r23"
 }
 
-variable "system-keymap" {
-  type    = string
-  default = "us"
-}
-
-variable "system-locale" {
-  type    = string
-  default = "en_US.UTF-8"
-}
-
-variable "system-timezone" {
-  type    = string
-  default = "UTC"
-}
-
 locals {
   build-id = "${ uuidv4() }"
   build-labels  = {
@@ -108,9 +93,6 @@ build {
       "NIX_RELEASE=${var.nix-release}",
       "NIX_CHANNEL=${var.nix-channel}",
       "ROOT_SSH_KEY=${var.root-ssh-key}",
-      "KEYMAP=${var.system-keymap}",
-      "LOCALE=${var.system-locale}",
-      "TIMEZONE=${var.system-timezone}",
     ]
   }
 
