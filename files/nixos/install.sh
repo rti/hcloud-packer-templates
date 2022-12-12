@@ -4,10 +4,6 @@
 # - NIX_RELEASE
 # - NIX_CHANNEL
 # - ROOT_SSH_KEY
-# - KEYMAP
-# - LOCALE
-# - TIMEZONE
-# - EXTRA_PACKAGES
 
 set -euo pipefail
 
@@ -43,7 +39,7 @@ nix-channel --update
 nix-env -iE "_: with import <nixpkgs/nixos> { configuration = {}; }; with config.system.build; [ nixos-generate-config nixos-install nixos-enter manual.manpages ]"
 
 # XXX: template the nix config previously injected by packer
-for i in NIX_CHANNEL KEYMAP LOCALE TIMEZONE ROOT_SSH_KEY; do
+for i in NIX_CHANNEL ROOT_SSH_KEY; do
   sed -i "s|{{ $i }}|${!i}|"  /mnt/etc/nixos/configuration.nix
 done
 nixos-generate-config --root /mnt
