@@ -20,6 +20,13 @@
   boot = {
     tmpOnTmpfs = lib.mkDefault true;
     loader.grub.device = lib.mkDefault "/dev/sda";
+
+    initrd.luks.devices = {
+      root = {
+        device = "/dev/sda2";
+        preLVM = true;
+      };
+    };
   };
 
   system.autoUpgrade.enable = lib.mkDefault true;
